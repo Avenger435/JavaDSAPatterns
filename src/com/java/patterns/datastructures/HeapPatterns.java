@@ -79,4 +79,12 @@ public class HeapPatterns {
         ListNode next;
         ListNode(int val) { this.val = val; }
     }
+
+    public static void main(String[] args) {
+        HeapPatterns hp = new HeapPatterns();
+        int[] nums = {3, 2, 1, 5, 6, 4};
+        int k = 2;
+        int result = hp.findKthLargest(nums, k);
+        System.out.println("The " + k + "-th largest element is: " + result); // Output: 5
+    }
 }
