@@ -66,4 +66,77 @@ public class MatrixTraversal {
         if (firstRowZero) for (int j = 0; j < n; j++) matrix[0][j] = 0;
         if (firstColZero) for (int i = 0; i < m; i++) matrix[i][0] = 0;
     }
+
+    // Additional Matrix Traversal Templates
+
+    // Row-wise Traversal Template
+    // Traverses the matrix row by row, left to right
+    public void rowWiseTraversal(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                // Process matrix[i][j] here, e.g., System.out.print(matrix[i][j] + " ");
+            }
+        }
+    }
+
+    // Column-wise Traversal Template
+    // Traverses the matrix column by column, top to bottom
+    public void columnWiseTraversal(int[][] matrix) {
+        for (int j = 0; j < matrix[0].length; j++) {
+            for (int i = 0; i < matrix.length; i++) {
+                // Process matrix[i][j] here
+            }
+        }
+    }
+
+    // Diagonal Traversal Template (Main Diagonals)
+    // Traverses from top-left to bottom-right diagonals
+    public void diagonalTraversal(int[][] matrix) {
+        int m = matrix.length, n = matrix[0].length;
+        for (int d = 0; d < m + n - 1; d++) {
+            for (int i = Math.max(0, d - n + 1); i <= Math.min(d, m - 1); i++) {
+                int j = d - i;
+                // Process matrix[i][j] here
+            }
+        }
+    }
+
+    // DFS Traversal Template for Matrix
+    // Useful for connected components, islands, etc.
+    private int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // right, down, left, up
+
+    public void dfsTraversal(int[][] matrix, int i, int j, boolean[][] visited) {
+        if (i < 0 || i >= matrix.length || j < 0 || j >= matrix[0].length || visited[i][j]) {
+            return;
+        }
+        visited[i][j] = true;
+        // Process matrix[i][j] here, e.g., if it's an island cell
+
+        for (int[] dir : directions) {
+            dfsTraversal(matrix, i + dir[0], j + dir[1], visited);
+        }
+    }
+
+    // BFS Traversal Template for Matrix
+    // Useful for shortest paths, level-order traversals
+    public void bfsTraversal(int[][] matrix, int startI, int startJ) {
+        boolean[][] visited = new boolean[matrix.length][matrix[0].length];
+        java.util.Queue<int[]> queue = new java.util.LinkedList<>();
+        queue.add(new int[]{startI, startJ});
+        visited[startI][startJ] = true;
+
+        while (!queue.isEmpty()) {
+            int[] curr = queue.poll();
+            int i = curr[0], j = curr[1];
+            // Process matrix[i][j] here
+
+            for (int[] dir : directions) {
+                int ni = i + dir[0], nj = j + dir[1];
+                if (ni >= 0 && ni < matrix.length && nj >= 0 && nj < matrix[0].length && !visited[ni][nj]) {
+                    visited[ni][nj] = true;
+                    queue.add(new int[]{ni, nj});
+                }
+            }
+        }
+    }
 }

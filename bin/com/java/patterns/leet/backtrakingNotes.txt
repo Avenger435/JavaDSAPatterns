@@ -1,0 +1,27 @@
+Explanation of Backtracking
+
+Backtracking is a systematic way to solve problems by trying to build a solution incrementally, one piece at a time, and abandoning ("backtracking") paths that lead to invalid solutions. It's particularly useful for combinatorial problems like generating subsets, permutations, or solving puzzles like N-Queens.
+
+Generic Backtracking Template
+
+The core template is in the backtrack method:
+
+	•  Parameters: current (the partial solution so far), choices (available options to add), and result (to store valid solutions).
+	•  Base Case: Check if current forms a complete solution using isSolution (a placeholder you customize per problem).
+	•  Iteration: For each choice, check if it's valid with isValid (another placeholder). If yes, add it to current, recurse to explore further, then remove it to backtrack.
+	•  This structure ensures we explore all possibilities without redundancy.
+
+Examples
+
+	1. Subsets (Generate all subsets of an array):
+	2. Problem: For [1, 2, 3], output [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]].
+	3. Approach: Start from index 0. At each step, decide to include the current element or skip it. Recurse to the next index. Add the current subset to results at each step (including empty).
+	4. Backtracking: Remove the element after recursion to try other paths.
+	5. Permutations (Generate all arrangements of an array):
+	6. Problem: For [1, 2, 3], output all 6 permutations like [[1,2,3], [1,3,2], ...].
+	7. Approach: Use a used array to track selected elements. Build the permutation by choosing unused elements at each position. When the list is full, add to results.
+	8. Backtracking: Unmark the element as used and remove it after recursion.
+	9. N-Queens (Count ways to place N queens on an N×N board without attacks):
+	10. Problem: For N=4, count valid placements (answer: 2).
+	11. Approach: Place queens row by row. For each row, try columns where it's safe (no same column or diagonal conflicts with previous queens). Recurse to the next row.
+	12. Backtracking: Implicitly handled by overwriting the array position in the loop.
