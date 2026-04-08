@@ -63,8 +63,8 @@ public class PrefixSumTemplate {
 			}
 		}
 
-		System.out.println(Arrays.deepToString(prefixSum));
 
+		print2DArray(prefixSum);
 	}
 
 	public static int twoDRangeSum(int[][] prefixSum, int row1, int col1, int row2, int col2) {
